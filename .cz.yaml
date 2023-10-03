@@ -1,0 +1,25 @@
+---
+commitizen:
+  name                     : cz_customize
+  version_provider         : scm
+  version_scheme           : semver
+  tag_format               : $version
+  annotated_tag            : false
+  update_changelog_on_bump : true
+  customize:
+    schema            : "<type>(?:<scope>): <body>"
+    schema_pattern    : "^(break|feat|fix|chore)(?:.*):(\\s.*)"
+    bump_pattern      : "^(break|feat|fix)(?:.*):(\\s.*)"
+    changelog_pattern : "^((break|feat|fix|chore)(?:.*):\\s)?(.*)"
+    commit_parser     : "^((?P<change_type>break|feat|fix|chore)(?P<scope>.*):\\s)?(?P<message>.*)"
+    change_type_map:
+      break : "Breaking Changes"
+      feat  : "Features"
+      fix   : "Fixes"
+      chore : "Chores"
+      ~     : "Other Changes"
+    bump_map:
+      break : MAJOR
+      feat  : MINOR
+      fix   : PATCH
+    change_type_order: ["Breaking changes", "Features", "Fixes", "Chores", "Other Changes"]
